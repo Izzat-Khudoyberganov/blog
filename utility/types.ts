@@ -3,4 +3,8 @@ export interface dataProps {
     text: string;
 }
 
-
+export interface NavLinskI {
+    id: number;
+    href: string;
+    text: string;
+}
