@@ -1,8 +1,11 @@
-import StyledComponentsRegistry from "../lib/registry";
-import { Montserrat } from "next/font/google";
+"use client";
+import { Quicksand } from "next/font/google";
+import Navbar from "@/components/navbar";
+import "@/style/main.css";
 
-const inter = Montserrat({
+const inter = Quicksand({
     subsets: ["latin"],
+    weight: ["400", "500", "700"],
     display: "swap",
 });
 
@@ -14,7 +17,8 @@ export default function RootLayout({
     return (
         <html lang='en' className={inter.className}>
             <body>
-                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+                <Navbar />
+                {children}
             </body>
         </html>
     );
