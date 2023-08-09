@@ -1,6 +1,6 @@
 "use client";
 import { Quicksand } from "next/font/google";
-import Navbar from "@/components/navbar";
+import Navbar from "components/navbar";
 import "@/style/main.css";
 
 const inter = Quicksand({

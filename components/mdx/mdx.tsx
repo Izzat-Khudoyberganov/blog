@@ -2,7 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import { cn } from "@/lib/utils";
+import { cn } from "lib/utils";
 
 type ComponentType =
     | React.FC<{ className: string }>
