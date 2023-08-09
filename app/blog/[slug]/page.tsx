@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { notFound } from "next/navigation";
-import { allDocs } from "../../../.contentlayer/generated";
+import { allDocs } from "contentlayer/generated";
 import { Mdx } from "components/mdx/mdx";
 
 interface PageProps {
