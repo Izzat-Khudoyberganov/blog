@@ -4,7 +4,14 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 
 import { cn } from "@/lib/utils";
 
-const components = {
+type ComponentType =
+    | React.FC<{ className: string }>
+    | React.FC<React.ImgHTMLAttributes<HTMLImageElement>>
+    | React.FC<React.HTMLAttributes<HTMLTableElement>>
+    | React.FC<React.HTMLAttributes<HTMLTableRowElement>>
+    | React.FC<{ className: string }>;
+
+const components: any = {
     h1: ({ className, ...props }: { className: string }) => (
         <h1
             className={cn(
@@ -166,7 +173,7 @@ interface MdxProps {
 }
 
 export function Mdx({ code }: MdxProps) {
-    const Component: any = useMDXComponent(code);
+    const Component = useMDXComponent(code);
 
     return (
         <div className='mdx'>
