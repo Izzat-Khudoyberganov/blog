@@ -1,6 +1,5 @@
 "use client";
 import { Quicksand } from "next/font/google";
-import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import "@/style/main.css";
 
@@ -10,22 +9,6 @@ const inter = Quicksand({
     display: "swap",
 });
 
-export const metadata: Metadata = {
-    metadataBase: new URL("https://khudoyberganov.uz"),
-    title: {
-        default: "Khudoyberganov Izzat",
-        template: "%s | Khudoyberganov Izzat",
-    },
-    description: "Developer, writer, and creator.",
-    openGraph: {
-        title: "Khudoyberganov Izzat",
-        description: "Developer, writer, and creator.",
-        url: "https://khudoyberganov.uz",
-        siteName: "Khudoyberganov Izzat",
-        locale: "uz-UZ",
-        type: "website",
-    },
-};
 
 export default function RootLayout({
     children,
