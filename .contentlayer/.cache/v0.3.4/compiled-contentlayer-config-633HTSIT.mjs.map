@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../contentlayer.config.js"],
-  "sourcesContent": ["import { defineDocumentType, makeSource } from 'contentlayer/source-files';\r\n\r\nexport const Blog = defineDocumentType(() => ({\r\n    name: 'Post',\r\n    contentType: 'mdx',\r\n    filePathPattern: 'posts/*.mdx',\r\n}));\r\n\r\nexport default makeSource({\r\n    contentDirPath: 'content',\r\n    documentTypes: [Blog],\r\n});"],
-  "mappings": ";AAAA,SAAS,oBAAoB,kBAAkB;AAExC,IAAM,OAAO,mBAAmB,OAAO;AAAA,EAC1C,MAAM;AAAA,EACN,aAAa;AAAA,EACb,iBAAiB;AACrB,EAAE;AAEF,IAAO,8BAAQ,WAAW;AAAA,EACtB,gBAAgB;AAAA,EAChB,eAAe,CAAC,IAAI;AACxB,CAAC;",
-  "names": []
-}
