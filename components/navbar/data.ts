@@ -1,4 +1,4 @@
-import { NavLinskI } from "@/utility/types";
+import { NavLinskI } from "utility/types";
 
 export const navLinks: NavLinskI[] = [
     {
