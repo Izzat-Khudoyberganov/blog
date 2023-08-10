@@ -1,171 +1,108 @@
 import * as React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import { cn } from "lib/utils";
+const CustomLink = (props: any) => {
+    const href = props.href;
 
-type ComponentType =
-    | React.FC<{ className: string }>
-    | React.FC<React.ImgHTMLAttributes<HTMLImageElement>>
-    | React.FC<React.HTMLAttributes<HTMLTableElement>>
-    | React.FC<React.HTMLAttributes<HTMLTableRowElement>>
-    | React.FC<{ className: string }>;
+    if (href.startsWith("/")) {
+        return (
+            <Link href={href} {...props}>
+                {props.children}
+            </Link>
+        );
+    }
 
-const components: any = {
-    h1: ({ className, ...props }: { className: string }) => (
-        <h1
-            className={cn(
-                "mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
-                className
-            )}
-            {...props}
-        />
-    ),
-    h2: ({ className, ...props }: { className: string }) => (
-        <h2
-            className={cn(
-                "mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
-                className
-            )}
-            {...props}
-        />
-    ),
-    h3: ({ className, ...props }: { className: string }) => (
-        <h3
-            className={cn(
-                "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
-                className
-            )}
-            {...props}
-        />
-    ),
-    h4: ({ className, ...props }: { className: string }) => (
-        <h4
-            className={cn(
-                "mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-                className
-            )}
-            {...props}
-        />
-    ),
-    h5: ({ className, ...props }: { className: string }) => (
-        <h5
-            className={cn(
-                "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-                className
-            )}
-            {...props}
-        />
-    ),
-    h6: ({ className, ...props }: { className: string }) => (
-        <h6
-            className={cn(
-                "mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-                className
-            )}
-            {...props}
-        />
-    ),
-    a: ({ className, ...props }: { className: string }) => (
-        <a
-            className={cn(
-                "font-medium underline underline-offset-4",
-                className
-            )}
-            {...props}
-        />
-    ),
-    p: ({ className, ...props }: { className: string }) => (
-        <p
-            className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
-            {...props}
-        />
-    ),
-    ul: ({ className, ...props }: { className: string }) => (
-        <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
-    ),
-    ol: ({ className, ...props }: { className: string }) => (
-        <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />
-    ),
-    li: ({ className, ...props }: { className: string }) => (
-        <li className={cn("mt-2", className)} {...props} />
-    ),
-    blockquote: ({ className, ...props }: { className: string }) => (
-        <blockquote
-            className={cn(
-                "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground",
-                className
-            )}
-            {...props}
-        />
-    ),
-    img: ({
-        className,
-        alt,
-        ...props
-    }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-            className={cn("rounded-md border", className)}
-            alt={alt}
-            {...props}
-        />
-    ),
-    hr: ({ ...props }) => <hr className='my-4 md:my-8' {...props} />,
-    table: ({
-        className,
-        ...props
-    }: React.HTMLAttributes<HTMLTableElement>) => (
-        <div className='my-6 w-full overflow-y-auto'>
-            <table className={cn("w-full", className)} {...props} />
+    if (href.startsWith("#")) {
+        return <a {...props} />;
+    }
+
+    return <a target='_blank' rel='noopener noreferrer' {...props} />;
+};
+
+function RoundedImage(props: any) {
+    return <Image alt={props.alt} className='rounded-lg' {...props} />;
+}
+
+function Callout(props: any) {
+    return (
+        <div className='px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8'>
+            <div className='flex items-center w-4 mr-4'>{props.emoji}</div>
+            <div className='w-full callout'>{props.children}</div>
         </div>
-    ),
-    tr: ({
-        className,
-        ...props
-    }: React.HTMLAttributes<HTMLTableRowElement>) => (
-        <tr
-            className={cn("m-0 border-t p-0 even:bg-muted", className)}
-            {...props}
-        />
-    ),
-    th: ({ className, ...props }: { className: string }) => (
-        <th
-            className={cn(
-                "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-                className
-            )}
-            {...props}
-        />
-    ),
-    td: ({ className, ...props }: { className: string }) => (
-        <td
-            className={cn(
-                "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-                className
-            )}
-            {...props}
-        />
-    ),
-    pre: ({ className, ...props }: { className: string }) => (
-        <pre
-            className={cn(
-                "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
-                className
-            )}
-            {...props}
-        />
-    ),
-    code: ({ className, ...props }: { className: string }) => (
-        <code
-            className={cn(
-                "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
-                className
-            )}
-            {...props}
-        />
-    ),
-    Image,
+    );
+}
+
+function ProsCard({ title, pros }: { title: string; pros: any }) {
+    return (
+        <div className='border border-emerald-200 dark:border-emerald-900 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 my-4 w-full'>
+            <span>{`You might use ${title} if...`}</span>
+            <div className='mt-4'>
+                {pros.map((pro: any) => (
+                    <div
+                        key={pro}
+                        className='flex font-medium items-baseline mb-2'
+                    >
+                        <div className='h-4 w-4 mr-2'>
+                            <svg
+                                className='h-4 w-4 text-emerald-500'
+                                viewBox='0 0 24 24'
+                            >
+                                <g
+                                    fill='none'
+                                    stroke='currentColor'
+                                    strokeWidth='2'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                >
+                                    <path d='M22 11.08V12a10 10 0 11-5.93-9.14' />
+                                    <path d='M22 4L12 14.01l-3-3' />
+                                </g>
+                            </svg>
+                        </div>
+                        <span>{pro}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function ConsCard({ title, cons }: { title: string; cons: any }) {
+    return (
+        <div className='border border-red-200 dark:border-red-900 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 my-6 w-full'>
+            <span>{`You might not use ${title} if...`}</span>
+            <div className='mt-4'>
+                {cons.map((con: any) => (
+                    <div
+                        key={con}
+                        className='flex font-medium items-baseline mb-2'
+                    >
+                        <div className='h-4 w-4 mr-2'>
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                viewBox='0 0 20 20'
+                                fill='currentColor'
+                                className='h-4 w-4 text-red-500'
+                            >
+                                <path d='M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z' />
+                            </svg>
+                        </div>
+                        <span>{con}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+const components = {
+    Image: RoundedImage,
+    a: CustomLink,
+    Callout,
+    ProsCard,
+    ConsCard,
 };
 
 interface MdxProps {
@@ -176,8 +113,8 @@ export function Mdx({ code }: MdxProps) {
     const Component = useMDXComponent(code);
 
     return (
-        <div className='mdx'>
-            <Component components={components} />
-        </div>
+        <article className='prose prose-quoteless prose-neutral dark:prose-invert'>
+            <Component components={{ ...components }} />
+        </article>
     );
 }

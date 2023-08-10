@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import { notFound } from "next/navigation";
 import { allDocs } from "contentlayer/generated";
+import Balancer from "react-wrap-balancer";
 import { Mdx } from "components/mdx/mdx";
 
 interface PageProps {
@@ -21,7 +22,15 @@ async function getDocFromParams(slug: string) {
 
 const page = async ({ params }: PageProps) => {
     const doc = await getDocFromParams(params.slug);
-    return <Mdx code={doc.body.code} />;
+
+    return (
+        <section className='container'>
+            <h1 className='font-bold text-2xl tracking-tighter max-w-[650px]'>
+                <Balancer>{doc.description}</Balancer>
+            </h1>
+            <Mdx code={doc.body.code} />
+        </section>
+    );
 };
 
 export default page;

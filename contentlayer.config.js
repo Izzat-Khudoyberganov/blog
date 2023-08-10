@@ -28,9 +28,6 @@ export const Doc = defineDocumentType(() => ({
         description: {
             type: "string",
         },
-        published: {
-            type: "boolean",
-        },
     },
     computedFields,
 }));

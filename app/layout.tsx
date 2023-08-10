@@ -1,7 +1,7 @@
 "use client";
 import { Quicksand } from "next/font/google";
 import Navbar from "components/navbar";
-import "style/main.css";
+import "styles/main.css";
 
 const inter = Quicksand({
     subsets: ["latin"],
