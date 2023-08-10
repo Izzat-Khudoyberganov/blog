@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { dataProps } from "@/utility/types";
+import { dataProps } from "utility/types";
 import { data } from "./data";
 import "./style.css";
 

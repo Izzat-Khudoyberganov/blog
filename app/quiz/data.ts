@@ -1,4 +1,4 @@
-import { dataProps } from "@/utility/types";
+import { dataProps } from "utility/types";
 
 export const data: dataProps[] = [
     {
