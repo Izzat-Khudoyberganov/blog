@@ -1,6 +1,7 @@
 "use client";
 import { Quicksand } from "next/font/google";
 import Navbar from "components/navbar";
+import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 import "styles/main.css";
 
 const inter = Quicksand({
@@ -19,6 +20,7 @@ export default function RootLayout({
             <body>
                 <Navbar />
                 {children}
+                <GoogleAnalytics measurementId='G-NMZYF8FWE8' />
             </body>
         </html>
     );
