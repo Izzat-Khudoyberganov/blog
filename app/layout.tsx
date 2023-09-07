@@ -1,9 +1,8 @@
 "use client";
 import { Quicksand } from "next/font/google";
 import Navbar from "components/navbar";
-import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 import "styles/main.css";
-import Script from "next/script";
+import GoogleAnalytics from "components/analytics";
 
 const inter = Quicksand({
     subsets: ["latin"],
@@ -18,19 +17,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang='en' className={inter.className}>
+            <GoogleAnalytics GA_MEASUREMENT_ID='G-CFR5ZG8VQG' />
             <body>
                 <Navbar />
                 {children}
-                {/* <GoogleAnalytics measurementId='G-NMZYF8FWE8' /> */}
-
-                <Script src='https://www.googletagmanager.com/gtag/js?id=G-LGHGRSL5J1'></Script>
-                <Script>
-                    {`window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                      
-                        gtag('config', 'G-LGHGRSL5J1');`}
-                </Script>
             </body>
         </html>
     );
